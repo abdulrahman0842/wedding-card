@@ -1,0 +1,102 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  html {
+    scroll-behavior: smooth;
+    -webkit-text-size-adjust: 100%;
+  }
+  body {
+    @apply bg-ivory font-sans text-olive-dark antialiased;
+    overflow-x: clip;
+  }
+  h1,
+  h2,
+  h3,
+  h4 {
+    @apply font-serif;
+  }
+  :focus-visible {
+    outline: 2px solid #c9a24d;
+    outline-offset: 3px;
+    border-radius: 4px;
+  }
+  section[id] {
+    scroll-margin-top: 3.5rem;
+  }
+}
+
+@layer components {
+  .btn {
+    @apply inline-flex min-h-[44px] items-center justify-center gap-2 rounded-full px-5 py-2.5 text-sm font-medium tracking-wide transition duration-200 active:scale-[0.98] disabled:cursor-not-allowed disabled:opacity-60;
+  }
+  .btn-primary {
+    @apply bg-pine text-ivory shadow-sm hover:bg-pine-light;
+  }
+  .btn-gold {
+    @apply bg-gold-dark text-white shadow-sm hover:bg-olive-dark;
+  }
+  .btn-outline {
+    @apply border border-gold-dark/60 bg-transparent text-pine hover:bg-gold/15;
+  }
+  .btn-light {
+    @apply border border-gold/60 bg-transparent text-ivory hover:bg-gold/20;
+  }
+  .eyebrow {
+    @apply text-xs font-medium uppercase tracking-[0.3em] text-gold-dark;
+  }
+  .field {
+    @apply w-full rounded-lg border border-gold-dark/40 bg-white/80 px-4 py-3 text-base text-pine shadow-inner placeholder:text-olive/60 focus:border-gold-dark focus:outline-none focus:ring-2 focus:ring-gold/50;
+  }
+
+  /* scroll-reveal */
+  .reveal {
+    opacity: 0;
+    transform: translateY(26px);
+    transition:
+      opacity 0.85s ease,
+      transform 0.85s cubic-bezier(0.22, 0.8, 0.3, 1);
+    transition-delay: var(--d, 0ms);
+  }
+  .reveal.is-visible {
+    opacity: 1;
+    transform: none;
+  }
+}
+
+/* Respect reduced motion */
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-delay: 0ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    transition-delay: 0ms !important;
+  }
+  .reveal {
+    opacity: 1;
+    transform: none;
+  }
+}
+
+/* Print: only the dedicated print card is shown */
+@media print {
+  @page {
+    size: A4;
+    margin: 12mm;
+  }
+  html,
+  body {
+    background: #fff !important;
+  }
+  * {
+    -webkit-print-color-adjust: exact;
+    print-color-adjust: exact;
+  }
+}
