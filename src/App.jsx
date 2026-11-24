@@ -8,7 +8,6 @@ import EventsSection from './components/EventsSection';
 import EventTimeline from './components/EventTimeline';
 import IslamicMessage from './components/IslamicMessage';
 import FamilySection from './components/FamilySection';
-import RSVPForm from './components/RSVPForm';
 import Footer from './components/Footer';
 import BackToTop from './components/BackToTop';
 import MusicControl from './components/MusicControl';
@@ -41,14 +40,14 @@ export default function App() {
           <EventTimeline />
           <IslamicMessage />
           <FamilySection />
-          <RSVPForm />
+    
         </main>
         <Footer />
       </div>
 
       <PrintCard />
       <BackToTop />
-      <MusicControl />
+      {/* <MusicControl /> */}
     </ToastProvider>
   );
 }

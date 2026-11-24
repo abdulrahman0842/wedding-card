@@ -1,6 +1,6 @@
 import { BookOpen, CheckCircle2, Heart, Moon, Sparkles, Users, Utensils } from 'lucide-react';
 import { weddingConfig } from '../data/weddingConfig';
-import { formatShortDate, formatTime12 } from '../utils/date';
+import { formatShortDate } from '../utils/date';
 import Reveal from './Reveal';
 import SectionHeading from './SectionHeading';
 import { PatternBg } from './Ornaments';
@@ -31,7 +31,7 @@ function TimelineColumn({ event }) {
               </span>
               <div>
                 <p className="text-sm font-medium tracking-wider text-gold-light">
-                  {formatTime12(step.time)}
+                  {step.time}
                 </p>
                 <p className="font-serif text-xl text-ivory">{step.label}</p>
               </div>

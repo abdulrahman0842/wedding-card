@@ -21,21 +21,22 @@ function Unit({ value, label }) {
   );
 }
 
-/** One independent countdown, driven by its own event date. */
 function CountdownBlock({ event, now, tone }) {
   const state = getCountdown(event, now);
   const accent = tone === 'nikah' ? 'text-pine' : 'text-olive-dark';
 
   return (
-    <div className="rounded-2xl border border-gold-dark/40 bg-white/60 p-5 shadow-sm backdrop-blur-sm sm:p-7">
-      <h3 className={`text-center text-3xl font-medium ${accent}`}>Countdown to {event.shortName}</h3>
+    <div className="rounded-2xl border border-gold-dark/40 bg-white/60 p-6 shadow-sm backdrop-blur-sm sm:p-8">
+      <h3 className={`text-center text-3xl font-medium ${accent}`}>
+        Countdown to {event.shortName}
+      </h3>
       <p className="mt-1 text-center text-sm text-olive-dark">
         {formatLongDate(event)} · {formatTimeRange(event)}
       </p>
 
       <div className="mt-6" role="timer" aria-label={`Countdown to ${event.shortName}`}>
         {state.status === 'upcoming' && (
-          <div className="grid grid-cols-4 gap-2 sm:gap-3">
+          <div className="grid grid-cols-4 gap-2 sm:gap-4">
             <Unit value={state.days} label="Days" />
             <Unit value={state.hours} label="Hours" />
             <Unit value={state.minutes} label="Minutes" />
@@ -67,20 +68,28 @@ export default function WeddingCountdown() {
     return () => clearInterval(id);
   }, []);
 
+  // Picks the 22 December event from weddingConfig (falls back to the first event)
+  const targetEvent =
+    weddingConfig.events.find((e) =>
+      String(e.date || e.startDate || '').includes('-12-22')
+    ) || weddingConfig.events[0];
+
+  if (!targetEvent) return null;
+
   return (
-    <section id="countdown" aria-labelledby="countdown-title" className="relative overflow-hidden bg-ivory-dark px-5 py-20 sm:py-28">
+    <section
+      id="countdown"
+      aria-labelledby="countdown-title"
+      className="relative overflow-hidden bg-ivory-dark px-5 py-20 sm:py-28"
+    >
       <PatternBg color="#8A6A22" opacity={0.07} />
-      <div className="relative mx-auto max-w-5xl">
-        <SectionHeading id="countdown-title" eyebrow="Save the dates" title="Counting the Days">
+      <div className="relative mx-auto max-w-2xl">
+        <SectionHeading id="countdown-title" eyebrow="Save the date" title="Counting the Days">
           {weddingConfig.text.weddingMessage}
         </SectionHeading>
-        <div className="grid gap-6 md:grid-cols-2">
-          {weddingConfig.events.map((event, i) => (
-            <Reveal key={event.id} delay={i * 120}>
-              <CountdownBlock event={event} now={now} tone={event.theme} />
-            </Reveal>
-          ))}
-        </div>
+        <Reveal>
+          <CountdownBlock event={targetEvent} now={now} tone={targetEvent.theme} />
+        </Reveal>
       </div>
     </section>
   );

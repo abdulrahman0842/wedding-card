@@ -1,5 +1,5 @@
-import { CalendarDays, CalendarPlus, Clock, Copy, MapPin, Navigation, Shirt, Info } from 'lucide-react';
-import { formatLongDate, formatTimeRange } from '../utils/date';
+import { CalendarDays, CalendarPlus, Clock, Copy, MapPin, Navigation, Info } from 'lucide-react';
+import { formatLongDate } from '../utils/date';
 import { eventSummaryText, googleCalendarUrl, mapsDirectionsUrl, mapsViewUrl } from '../utils/links';
 import { copyText } from '../utils/actions';
 import { useToast } from '../context/ToastContext';
@@ -14,7 +14,7 @@ const THEMES = {
     icon: 'text-pine',
     primary: 'btn-primary',
     Art: MosqueIllustration,
-    label: 'Event one',
+    label: 'Day 1 · Nikah',
   },
   walima: {
     card: 'border-gold-dark/50',
@@ -23,7 +23,7 @@ const THEMES = {
     icon: 'text-gold-dark',
     primary: 'btn-gold',
     Art: LawnIllustration,
-    label: 'Event two',
+    label: 'Day 2 · Walima',
   },
 };
 
@@ -73,18 +73,17 @@ export default function EventCard({ event }) {
             {formatLongDate(event)}
           </Detail>
           <Detail icon={Clock} label="Time" iconClass={t.icon}>
-            {formatTimeRange(event)}
+            {event.time}
           </Detail>
           <Detail icon={MapPin} label="Venue" iconClass={t.icon}>
             <span className="font-medium">{event.venue}</span>
             <address className="mt-0.5 text-[0.95rem] not-italic text-olive-dark">{event.address}</address>
           </Detail>
-          <Detail icon={Shirt} label="Dress code" iconClass={t.icon}>
-            {event.dressCode}
-          </Detail>
-          <Detail icon={Info} label="Good to know" iconClass={t.icon}>
-            <span className="text-[0.95rem] text-olive-dark">{event.info}</span>
-          </Detail>
+          {event.info && (
+            <Detail icon={Info} label="Good to know" iconClass={t.icon}>
+              <span className="text-[0.95rem] text-olive-dark">{event.info}</span>
+            </Detail>
+          )}
         </dl>
 
         <div className="mt-auto grid gap-2.5 pt-7">

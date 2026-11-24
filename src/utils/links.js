@@ -1,5 +1,5 @@
 import { weddingConfig, coupleNames } from '../data/weddingConfig';
-import { formatLongDate, formatTimeRange } from './date';
+import { eventEnd, eventStart, formatLongDate, formatTimeRange } from './date';
 
 const place = (event) => `${event.venue}, ${event.address}`;
 
@@ -17,15 +17,34 @@ export function mapsDirectionsUrl(event) {
   )}&travelmode=driving`;
 }
 
-// "2026-12-15" + "11:00" -> "20261215T110000" (local wall-clock time, paired with ctz below)
-const compact = (date, time) => `${date.replaceAll('-', '')}T${time.replace(':', '')}00`;
+// Formats a Date in the wedding timezone as "20261222T160000" (local wall-clock time, paired with ctz)
+function compactInWeddingTz(date) {
+  const parts = Object.fromEntries(
+    new Intl.DateTimeFormat('en-GB', {
+      timeZone: weddingConfig.timezone,
+      year: 'numeric',
+      month: '2-digit',
+      day: '2-digit',
+      hour: '2-digit',
+      minute: '2-digit',
+      second: '2-digit',
+      hour12: false,
+    })
+      .formatToParts(date)
+      .map((p) => [p.type, p.value]),
+  );
+  return `${parts.year}${parts.month}${parts.day}T${parts.hour}${parts.minute}${parts.second}`;
+}
 
 /** Google Calendar "add event" link, using the event's own date/time and the wedding timezone. */
 export function googleCalendarUrl(event) {
+  const start = compactInWeddingTz(eventStart(event));
+  const end = compactInWeddingTz(eventEnd(event));
+
   const params = new URLSearchParams({
     action: 'TEMPLATE',
     text: `${event.name} – ${coupleNames}`,
-    dates: `${compact(event.date, event.startTime)}/${compact(event.date, event.endTime)}`,
+    dates: `${start}/${end}`,
     ctz: weddingConfig.timezone,
     details: `${event.info}\n\nDress code: ${event.dressCode}`,
     location: place(event),

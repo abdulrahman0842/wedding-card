@@ -2,9 +2,34 @@ import { weddingConfig } from '../data/weddingConfig';
 
 const { timezone, utcOffset } = weddingConfig;
 
+/** Extracts "HH:mm" (24-hour) from strings like "4:00 PM" or "After Asr Namaz (Jama'at at 4:00 PM)" */
+function parse24HourTime(timeStr = '00:00') {
+  const match = String(timeStr).match(/(\d{1,2}):(\d{2})\s*(AM|PM)?/i);
+  if (!match) return '00:00';
+
+  let hours = Number(match[1]);
+  const minutes = match[2];
+  const meridiem = match[3]?.toUpperCase();
+
+  if (meridiem === 'PM' && hours < 12) hours += 12;
+  if (meridiem === 'AM' && hours === 12) hours = 0;
+
+  return `${String(hours).padStart(2, '0')}:${minutes}`;
+}
+
 /** Absolute instants for an event, built with the explicit wedding-timezone offset. */
-export const eventStart = (event) => new Date(`${event.date}T${event.startTime}:00${utcOffset}`);
-export const eventEnd = (event) => new Date(`${event.date}T${event.endTime}:00${utcOffset}`);
+export const eventStart = (event) => {
+  const hhmm = event.startTime || parse24HourTime(event.time);
+  return new Date(`${event.date}T${hhmm}:00${utcOffset}`);
+};
+
+export const eventEnd = (event) => {
+  if (event.endTime) {
+    return new Date(`${event.date}T${event.endTime}:00${utcOffset}`);
+  }
+  // Default 3-hour window when no endTime is specified
+  return new Date(eventStart(event).getTime() + 3 * 60 * 60 * 1000);
+};
 
 const parts = (date, options) =>
   Object.fromEntries(
@@ -41,8 +66,10 @@ export function formatTime12(hhmm) {
   return `${h % 12 || 12}:${String(m).padStart(2, '0')} ${suffix}`;
 }
 
-export const formatTimeRange = (event) =>
-  `${formatTime12(event.startTime)} – ${formatTime12(event.endTime)}`;
+export const formatTimeRange = (event) => {
+  if (event.time) return event.time;
+  return `${formatTime12(event.startTime)} – ${formatTime12(event.endTime)}`;
+};
 
 /**
  * Countdown state for an event.

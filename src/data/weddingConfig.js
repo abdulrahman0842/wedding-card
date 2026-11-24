@@ -23,13 +23,13 @@ export const weddingConfig = {
     initials: ['A', 'M'],
     groom: {
       first: 'Abdul Rahman',
-      full: 'Abdul Rahman ',
+      full: 'Abdul Rahman Akhlaque Ahmed',
       relation: 'Son of',
       parents: 'Mr. Akhlaque Ahmed',
     },
     bride: {
       first: 'Maryam',
-      full: 'Maryam',
+      full: 'Maryam Akhtar Husain',
       relation: 'Daughter of',
       parents: 'Mr. Akhtar Husain',
     },
@@ -46,7 +46,7 @@ export const weddingConfig = {
       'We request the pleasure of your company as we celebrate our wedding festivities.',
     familyMessage:
       'Together with our families, we invite you to share in our happiness and bless us with your presence.',
-    footerSignoff: ['With love and duas,', 'Abdulrahman & Ayesha'],
+    footerSignoff: ['With love and duas,', 'Abdul Rahman & Maryam'],
     footerLine: 'We look forward to celebrating these special moments with you.',
     jazakArabic: 'جزاك الله خيراً',
     jazakLatin: 'JazakAllahu Khairan',
@@ -61,53 +61,47 @@ export const weddingConfig = {
   },
 
   // Two separate events. Never merge them — each has its own date, venue and links.
-  events: [
-    {
-      id: 'nikah',
-      name: 'Nikah Ceremony',
-      shortName: 'Nikah',
-      art: 'mosque',
-      theme: 'nikah',
-      date: '2026-12-15',
-      startTime: '11:00',
-      endTime: '12:30',
-      venue: 'Jameel Masjid',
-      address: 'Saleem Munshi nagar, Malegaon, Maharashtra 423203, India',
-      info: 'The Nikah ceremony will take place at the mosque. Guests are requested to arrive 15 minutes early.',
-      dressCode: 'Traditional / Modest Attire',
-      // Optional overrides (e.g. a precise Google Maps share link). Leave empty to auto-generate.
-      mapsUrl: '',
-      directionsUrl: '',
-      timeline: [
-        { time: '10:45', label: 'Guest arrival', icon: 'arrival' },
-        { time: '11:00', label: 'Nikah ceremony begins', icon: 'ceremony' },
-        { time: '12:00', label: 'Dua and congratulations', icon: 'dua' },
-        { time: '12:30', label: 'Ceremony concludes', icon: 'end' },
-      ],
-    },
-    {
-      id: 'walima',
-      name: 'Walima Reception',
-      shortName: 'Walima',
-      art: 'lawn',
-      theme: 'walima',
-      date: '2026-12-18',
-      startTime: '19:00',
-      endTime: '22:30',
-      venue: 'Royal Celebration Lawns',
-      address: 'Mumbai Agra Highway, Malegaon, Maharashtra 423203, India',
-      info: 'Join us for an evening of celebration, dinner and togetherness.',
-      dressCode: 'Traditional / Formal Attire',
-      mapsUrl: '',
-      directionsUrl: '',
-      timeline: [
-        { time: '19:00', label: 'Guest arrival', icon: 'arrival' },
-        { time: '19:30', label: "Couple's arrival", icon: 'couple' },
-        { time: '20:00', label: 'Dinner', icon: 'dinner' },
-        { time: '22:30', label: 'Celebration concludes', icon: 'end' },
-      ],
-    },
-  ],
+ events: [
+  {
+    id: 'nikah',
+    name: 'Nikah Ceremony',
+    shortName: 'Nikah',
+    art: 'mosque',
+    theme: 'nikah',
+    date: '2026-12-22',
+    time: 'After Asr Namaz (Jama\'at at 4:00 PM)',
+    venue: 'Jameela Masjid',
+    address: 'Saleem Munshi Nagar, Malegaon, Maharashtra 423203, India',
+    info: 'The Nikah ceremony will take place at the mosque after Asr Namaz (Jama\'at at 4:00 PM).',
+    dressCode: 'Traditional / Modest Attire',
+    // Optional overrides (e.g. a precise Google Maps share link). Leave empty to auto-generate.
+    mapsUrl: '',
+    directionsUrl: '',
+    timeline: [
+      { time: '4:00 PM', label: 'Asr Namaz (Jama\'at)', icon: 'arrival' },
+      { time: 'After Asr', label: 'Nikah ceremony', icon: 'ceremony' },
+      { time: 'Followed by', label: 'Dua and congratulations', icon: 'dua' },
+    ],
+  },
+  {
+    id: 'walima',
+    name: 'Walima Reception',
+    shortName: 'Walima',
+    art: 'lawn',
+    theme: 'walima',
+    date: '2026-12-23',
+    time: '8:00 PM',
+    venue: 'Lotus Lawns',
+    address: 'Mumbai Agra Highway, Malegaon, Maharashtra 423203, India',
+    info: 'Join us for an evening of celebration, dinner and togetherness.',
+    dressCode: 'Traditional / Formal Attire',
+    mapsUrl: '',
+    directionsUrl: '',
+    timeline: [
+      { time: '8:00 PM', label: 'Guest arrival & dinner', icon: 'dinner' },
+    ],
+  },
+],
 
   rsvp: {
     maxGuests: 10,
@@ -119,7 +113,7 @@ export const weddingConfig = {
     { id: 'countdown', label: 'Countdown' },
     { id: 'events', label: 'Events' },
     { id: 'timeline', label: 'Schedule' },
-    { id: 'rsvp', label: 'RSVP' },
+
   ],
 };
 
