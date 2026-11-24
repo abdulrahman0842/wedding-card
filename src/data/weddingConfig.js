@@ -20,18 +20,18 @@ export const weddingConfig = {
   music: { src: '', label: 'Background music' },
 
   couple: {
-    initials: ['A', 'A'],
+    initials: ['A', 'M'],
     groom: {
-      first: 'Abdulrahman',
-      full: 'Abdulrahman Ahmed',
+      first: 'Abdul Rahman',
+      full: 'Abdul Rahman ',
       relation: 'Son of',
-      parents: 'Mr. Ahmed Khan & Mrs. Fatima Ahmed',
+      parents: 'Mr. Akhlaque Ahmed',
     },
     bride: {
-      first: 'Ayesha',
-      full: 'Ayesha Khan',
+      first: 'Maryam',
+      full: 'Maryam',
       relation: 'Daughter of',
-      parents: 'Mr. Imran Khan & Mrs. Sana Imran',
+      parents: 'Mr. Akhtar Husain',
     },
   },
 
@@ -71,8 +71,8 @@ export const weddingConfig = {
       date: '2026-12-15',
       startTime: '11:00',
       endTime: '12:30',
-      venue: 'Masjid-e-Noor',
-      address: 'Jama Masjid Road, Malegaon, Maharashtra 423203, India',
+      venue: 'Jameel Masjid',
+      address: 'Saleem Munshi nagar, Malegaon, Maharashtra 423203, India',
       info: 'The Nikah ceremony will take place at the mosque. Guests are requested to arrive 15 minutes early.',
       dressCode: 'Traditional / Modest Attire',
       // Optional overrides (e.g. a precise Google Maps share link). Leave empty to auto-generate.
