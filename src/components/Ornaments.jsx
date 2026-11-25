@@ -172,3 +172,61 @@ export function MosqueSilhouette({ className = '' }) {
     </svg>
   );
 }
+
+
+/** Elegant Islamic mihrab-inspired arch frame. */
+export function ArchFrame({ className = '', stroke = '#C9A24D' }) {
+  return (
+    <svg
+      aria-hidden="true"
+      viewBox="0 0 400 520"
+      preserveAspectRatio="none"
+      className={className}
+      fill="none"
+    >
+      {/* Outer arch */}
+      <path
+        d="M12 508V190C12 95 88 12 200 12s188 83 188 178v318"
+        stroke={stroke}
+        strokeWidth="1.5"
+        opacity=".85"
+      />
+
+      {/* Inner arch */}
+      <path
+        d="M25 508V192C25 105 96 26 200 26s175 79 175 166v316"
+        stroke={stroke}
+        strokeWidth=".7"
+        opacity=".5"
+      />
+
+      {/* Decorative arch crown */}
+      <path
+        d="M177 32L200 12l23 20M186 43l14-12 14 12"
+        stroke={stroke}
+        strokeWidth="1"
+        opacity=".8"
+      />
+
+      {/* Side ornaments */}
+      <path
+        d="M12 210c20-12 20-32 0-44M388 210c-20-12-20-32 0-44"
+        stroke={stroke}
+        strokeWidth="1"
+        opacity=".6"
+      />
+
+      {/* Base decorations */}
+      <path
+        d="M12 495h35m306 0h35"
+        stroke={stroke}
+        strokeWidth="1"
+        opacity=".7"
+      />
+
+      <circle cx="200" cy="12" r="3" fill={stroke} />
+      <circle cx="12" cy="508" r="2" fill={stroke} />
+      <circle cx="388" cy="508" r="2" fill={stroke} />
+    </svg>
+  );
+}

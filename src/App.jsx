@@ -35,12 +35,12 @@ export default function App() {
         <Navbar />
         <main>
           <HeroSection ready={opening} />
-          <WeddingCountdown />
           <EventsSection />
+          <WeddingCountdown />
           <EventTimeline />
           <IslamicMessage />
           <FamilySection />
-    
+
         </main>
         <Footer />
       </div>

@@ -36,21 +36,25 @@ export const weddingConfig = {
   },
 
   text: {
-    bismillahArabic: 'بِسْمِ اللَّهِ الرَّحْمَٰنِ الرَّحِيمِ',
-    bismillahLatin: 'Bismillahir Rahmanir Raheem',
-    blessing: 'With the blessings of Allah (SWT)',
-    coverGreeting: "You're Cordially Invited",
-    weddingMessage:
-      'With the blessings of Allah (SWT), we joyfully invite you to celebrate the beginning of our new journey together.',
-    heroRequest:
-      'We request the pleasure of your company as we celebrate our wedding festivities.',
-    familyMessage:
-      'Together with our families, we invite you to share in our happiness and bless us with your presence.',
-    footerSignoff: ['With love and duas,', 'Abdul Rahman & Maryam'],
-    footerLine: 'We look forward to celebrating these special moments with you.',
-    jazakArabic: 'جزاك الله خيراً',
-    jazakLatin: 'JazakAllahu Khairan',
-  },
+  bismillahArabic: 'بِسْمِ اللَّهِ الرَّحْمَٰنِ الرَّحِيمِ',
+  bismillahLatin: 'Bismillahir Rahmanir Raheem',
+  blessing: 'With the blessings of Allah (SWT)',
+
+  coverGreeting: "You're Cordially Invited",
+  hostFamily: 'The Family of Late Saleem Ahmed',
+  welcomeMessage: 'Cordially Welcomes You',
+
+  weddingMessage:
+    'With the blessings of Allah (SWT), we joyfully invite you to celebrate the beginning of our new journey together.',
+  heroRequest:
+    'We request the pleasure of your company as we celebrate our wedding festivities.',
+  familyMessage:
+    'Together with our families, we invite you to share in our happiness and bless us with your presence.',
+  footerSignoff: ['With love and duas,', 'Abdul Rahman & Maryam'],
+  footerLine: 'We look forward to celebrating these special moments with you.',
+  jazakArabic: 'جزاك الله خيراً',
+  jazakLatin: 'JazakAllahu Khairan',
+},
 
   ayah: {
     arabic:
@@ -70,8 +74,8 @@ export const weddingConfig = {
     theme: 'nikah',
     date: '2026-12-22',
     time: 'After Asr Namaz (Jama\'at at 4:00 PM)',
-    venue: 'Jameela Masjid',
-    address: 'Saleem Munshi Nagar, Malegaon, Maharashtra 423203, India',
+    venue: 'Masjid Jameela',
+    address: 'Saleem Munshi Nagar, Malegaon',
     info: 'The Nikah ceremony will take place at the mosque after Asr Namaz (Jama\'at at 4:00 PM).',
     dressCode: 'Traditional / Modest Attire',
     // Optional overrides (e.g. a precise Google Maps share link). Leave empty to auto-generate.
@@ -92,7 +96,7 @@ export const weddingConfig = {
     date: '2026-12-23',
     time: '8:00 PM',
     venue: 'Lotus Lawns',
-    address: 'Mumbai Agra Highway, Malegaon, Maharashtra 423203, India',
+    address: '80 ft. road, behind Naurang Colony, Malegaon',
     info: 'Join us for an evening of celebration, dinner and togetherness.',
     dressCode: 'Traditional / Formal Attire',
     mapsUrl: '',

@@ -1,128 +1,181 @@
-import { CalendarDays, CalendarPlus, Clock, Copy, MapPin, Navigation, Info } from 'lucide-react';
+
+import {
+  CalendarDays,
+  CalendarPlus,
+  Clock,
+  MapPin,
+  Navigation,
+  Info,
+} from 'lucide-react';
+
 import { formatLongDate } from '../utils/date';
-import { eventSummaryText, googleCalendarUrl, mapsDirectionsUrl, mapsViewUrl } from '../utils/links';
-import { copyText } from '../utils/actions';
-import { useToast } from '../context/ToastContext';
+import {
+  googleCalendarUrl,
+  mapsDirectionsUrl,
+  mapsViewUrl,
+} from '../utils/links';
 import { LawnIllustration, MosqueIllustration } from './Illustrations';
-import { FloralBorder } from './Ornaments';
 
 const THEMES = {
   nikah: {
-    card: 'border-pine/30',
-    badge: 'bg-pine text-gold-light',
-    title: 'text-pine',
-    icon: 'text-pine',
+    card: 'border-pine/20',
+    header: 'bg-pine text-ivory',
+    badge: 'border-gold/50 text-gold-light',
+    title: 'text-ivory',
+    icon: 'text-gold-dark',
     primary: 'btn-primary',
     Art: MosqueIllustration,
-    label: 'Day 1 · Nikah',
+    subtitle: 'A blessed beginning',
+    label: 'Day One · Nikah',
   },
   walima: {
-    card: 'border-gold-dark/50',
-    badge: 'bg-gold-dark text-white',
-    title: 'text-olive-dark',
+    card: 'border-gold-dark/30',
+    header: 'bg-[#F0E6D2] text-pine',
+    badge: 'border-gold-dark/50 text-gold-dark',
+    title: 'text-pine',
     icon: 'text-gold-dark',
     primary: 'btn-gold',
     Art: LawnIllustration,
-    label: 'Day 2 · Walima',
+    subtitle: 'A celebration of togetherness',
+    label: 'Day Two · Walima',
   },
 };
 
 function Detail({ icon: Icon, label, iconClass, children }) {
   return (
-    <div className="flex gap-3">
-      <Icon className={`mt-0.5 h-5 w-5 shrink-0 ${iconClass}`} aria-hidden="true" />
-      <div className="min-w-0">
-        <dt className="text-[0.7rem] font-medium uppercase tracking-[0.2em] text-olive">{label}</dt>
-        <dd className="mt-0.5 text-base text-pine [overflow-wrap:anywhere]">{children}</dd>
+    <div className="flex items-start gap-3">
+      <div className="mt-0.5 flex h-9 w-9 shrink-0 items-center justify-center rounded-full bg-sand/50">
+        <Icon className={`h-4 w-4 ${iconClass}`} aria-hidden="true" />
+      </div>
+
+      <div className="min-w-0 flex-1">
+        <dt className="text-[0.65rem] font-semibold uppercase tracking-[0.2em] text-olive">
+          {label}
+        </dt>
+
+        <dd className="mt-1 text-base leading-relaxed text-pine [overflow-wrap:anywhere]">
+          {children}
+        </dd>
       </div>
     </div>
   );
 }
 
 export default function EventCard({ event }) {
-  const notify = useToast();
   const t = THEMES[event.theme] ?? THEMES.nikah;
-
-  const copyDetails = async () => {
-    const ok = await copyText(eventSummaryText(event));
-    notify(ok ? `${event.name} details copied` : 'Could not copy — please select the text manually');
-  };
 
   return (
     <article
       aria-labelledby={`${event.id}-title`}
-      className={`flex h-full flex-col overflow-hidden rounded-2xl border bg-ivory shadow-[0_18px_40px_-18px_rgba(11,61,46,0.35)] ${t.card}`}
+      className={`flex h-full flex-col overflow-hidden rounded-xl border bg-ivory shadow-[0_18px_45px_-24px_rgba(11,61,46,0.35)] ${t.card}`}
     >
-      <div className="relative h-48 sm:h-56">
+      {/* Event artwork */}
+      <div className="relative h-48 overflow-hidden sm:h-56">
         <t.Art className="absolute inset-0 h-full w-full" />
-        <span
-          className={`absolute left-4 top-4 rounded-full px-3 py-1 text-[0.65rem] font-medium uppercase tracking-[0.25em] ${t.badge}`}
-        >
-          {t.label}
-        </span>
-      </div>
-      <FloralBorder className="-mt-1 h-6 bg-ivory text-gold" />
 
-      <div className="flex flex-1 flex-col px-5 pb-6 pt-2 sm:px-7">
-        <h3 id={`${event.id}-title`} className={`text-center text-4xl font-medium ${t.title}`}>
+        <div className="absolute inset-0 bg-gradient-to-t from-black/40 via-transparent to-black/10" />
+
+        <div className="absolute left-5 top-5">
+          <span
+            className={`inline-block border bg-pine-dark/70 px-4 py-2 text-[0.65rem] font-medium uppercase tracking-[0.2em] backdrop-blur-sm ${t.badge}`}
+          >
+            {t.label}
+          </span>
+        </div>
+      </div>
+
+      {/* Event heading */}
+      <div className={`px-5 py-6 text-center sm:px-7 ${t.header}`}>
+        <p className="text-xs italic opacity-75">{t.subtitle}</p>
+
+        <h3
+          id={`${event.id}-title`}
+          className={`mt-1 font-serif text-4xl font-medium ${t.title}`}
+        >
           {event.name}
         </h3>
+      </div>
 
-        <dl className="mt-6 space-y-4">
-          <Detail icon={CalendarDays} label="Date" iconClass={t.icon}>
-            {formatLongDate(event)}
-          </Detail>
-          <Detail icon={Clock} label="Time" iconClass={t.icon}>
-            {event.time}
-          </Detail>
+      {/* Details */}
+      <div className="flex flex-1 flex-col px-5 py-6 sm:px-7">
+        <div className="grid grid-cols-2 gap-4 border-b border-gold/25 pb-6">
+          <div>
+            <div className="flex items-center gap-2 text-olive">
+              <CalendarDays className="h-4 w-4" />
+              <span className="text-[0.65rem] font-semibold uppercase tracking-wider">
+                Date
+              </span>
+            </div>
+
+            <p className="mt-2 font-serif text-lg font-medium leading-tight text-pine">
+              {formatLongDate(event)}
+            </p>
+          </div>
+
+          <div>
+            <div className="flex items-center gap-2 text-olive">
+              <Clock className="h-4 w-4" />
+              <span className="text-[0.65rem] font-semibold uppercase tracking-wider">
+                Time
+              </span>
+            </div>
+
+            <p className="mt-2 font-serif text-lg font-medium text-pine">
+              {event.time}
+            </p>
+          </div>
+        </div>
+
+        <div className="mt-6 space-y-5">
           <Detail icon={MapPin} label="Venue" iconClass={t.icon}>
-            <span className="font-medium">{event.venue}</span>
-            <address className="mt-0.5 text-[0.95rem] not-italic text-olive-dark">{event.address}</address>
+            <span className="font-semibold">{event.venue}</span>
+
+            <address className="mt-1 text-sm not-italic text-olive-dark">
+              {event.address}
+            </address>
           </Detail>
+
           {event.info && (
             <Detail icon={Info} label="Good to know" iconClass={t.icon}>
-              <span className="text-[0.95rem] text-olive-dark">{event.info}</span>
+              <span className="text-sm text-olive-dark">{event.info}</span>
             </Detail>
           )}
-        </dl>
+        </div>
 
-        <div className="mt-auto grid gap-2.5 pt-7">
+        {/* Actions */}
+        <div className="mt-auto space-y-3 pt-8">
           <a
-            href={mapsViewUrl(event)}
+            href={mapsDirectionsUrl(event)}
             target="_blank"
             rel="noopener noreferrer"
-            className={`btn ${t.primary}`}
+            className={`btn w-full ${t.primary}`}
           >
-            <MapPin className="h-4 w-4" aria-hidden="true" />
-            View Location on Google Maps
+            <Navigation className="h-4 w-4" aria-hidden="true" />
+            Get Directions
             <span className="sr-only"> (opens in a new tab)</span>
           </a>
-          <div className="grid gap-2.5 sm:grid-cols-2">
+
+          <div className="grid grid-cols-2 gap-2">
             <a
-              href={mapsDirectionsUrl(event)}
+              href={mapsViewUrl(event)}
               target="_blank"
               rel="noopener noreferrer"
-              className="btn btn-outline"
+              className="btn btn-outline text-xs"
             >
-              <Navigation className="h-4 w-4" aria-hidden="true" />
-              Get Directions
-              <span className="sr-only"> (opens in a new tab)</span>
+              <MapPin className="h-4 w-4" aria-hidden="true" />
+              View Map
             </a>
+
             <a
               href={googleCalendarUrl(event)}
               target="_blank"
               rel="noopener noreferrer"
-              className="btn btn-outline"
+              className="btn btn-outline text-xs"
             >
               <CalendarPlus className="h-4 w-4" aria-hidden="true" />
-              Add to Google Calendar
-              <span className="sr-only"> (opens in a new tab)</span>
+              Calendar
             </a>
           </div>
-          <button type="button" onClick={copyDetails} className="btn text-olive-dark hover:bg-gold/15">
-            <Copy className="h-4 w-4" aria-hidden="true" />
-            Copy Event Details
-          </button>
         </div>
       </div>
     </article>
