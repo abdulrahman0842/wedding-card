@@ -1,6 +1,6 @@
 
 import { useEffect, useRef, useState } from "react";
-import { useParams } from "react-router";
+import { useParams } from "react-router-dom";
 import { supabase } from "../lib/supabase";
 
 import InvitationCover from "../components/InvitationCover";

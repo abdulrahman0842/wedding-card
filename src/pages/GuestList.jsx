@@ -2,7 +2,7 @@
 import { useEffect, useState } from "react";
 import { supabase } from "../lib/supabase";
 import { Copy, Check, Search, RefreshCw, Users, Loader2, UserPlus } from "lucide-react";
-import { useNavigate } from "react-router";
+import { useNavigate } from "react-router-dom";
 
 export default function GuestList() {
     const [guests, setGuests] = useState([]);
