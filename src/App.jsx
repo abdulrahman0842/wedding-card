@@ -31,7 +31,7 @@
 //   return (
 //     <ToastProvider>
 //       {!opened && <InvitationCover onStart={() => setOpening(true)} onDone={() => setOpened(true)} />}
-     
+
 
 //       <Route
 //         path="/admin/guests"
@@ -71,6 +71,7 @@ import ProtectedRoute from "./components/ProtectedRoute";
 import GuestForm from "./pages/GuestForm";
 import Login from "./pages/Login";
 import GuestInvitation, { ErrorPage } from "./pages/GuestInvitation";
+import GuestList from "./pages/GuestList";
 
 function App() {
   return (
@@ -96,7 +97,12 @@ function App() {
               path="/admin/guests"
               element={<GuestForm />}
             />
+            <Route
+              path="/admin/guests-list"
+              element={<GuestList />}
+            />
           </Route>
+
 
           {/* Invalid or missing invitation */}
           <Route path="/" element={<ErrorPage />} />
