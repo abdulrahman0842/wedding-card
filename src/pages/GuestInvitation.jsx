@@ -38,12 +38,19 @@ export default function GuestInvitation() {
   const { token } = useParams();
 
   const [status, setStatus] = useState("checking");
+  const [guest, setGuest] = useState(null);
 
   useEffect(() => {
     let active = true;
 
     const verifyToken = async () => {
       setStatus("checking");
+      setGuest(null);
+
+      if (!token) {
+        setStatus("invalid");
+        return;
+      }
 
       const { data, error } = await supabase.rpc(
         "verify_guest_token",
@@ -58,14 +65,16 @@ export default function GuestInvitation() {
         return;
       }
 
-      setStatus(data === true ? "valid" : "invalid");
+      if (!data || data.length === 0) {
+        setStatus("invalid");
+        return;
+      }
+
+      setGuest(data[0]);
+      setStatus("valid");
     };
 
-    if (!token) {
-      setStatus("invalid");
-    } else {
-      verifyToken();
-    }
+    verifyToken();
 
     return () => {
       active = false;
@@ -86,10 +95,10 @@ export default function GuestInvitation() {
     return <ErrorPage />;
   }
 
-  return <WeddingCard />;
+  return <WeddingCard guest={guest} />;
 }
 
-function WeddingCard() {
+function WeddingCard({ guest }) {
   const [opening, setOpening] = useState(false);
   const [opened, setOpened] = useState(false);
   const pageRef = useRef(null);
@@ -112,6 +121,7 @@ function WeddingCard() {
         <InvitationCover
           onStart={() => setOpening(true)}
           onDone={() => setOpened(true)}
+          guestName={`${guest.guest_title} ${guest.guest_name}`}
         />
       )}
 

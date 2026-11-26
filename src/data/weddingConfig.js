@@ -36,25 +36,25 @@ export const weddingConfig = {
   },
 
   text: {
-  bismillahArabic: 'بِسْمِ اللَّهِ الرَّحْمَٰنِ الرَّحِيمِ',
-  bismillahLatin: 'Bismillahir Rahmanir Raheem',
-  blessing: 'With the blessings of Allah (SWT)',
+    bismillahArabic: 'بِسْمِ اللَّهِ الرَّحْمَٰنِ الرَّحِيمِ',
+    bismillahLatin: 'Bismillahir Rahmanir Raheem',
+    blessing: 'With the blessings of Allah (SWT)',
 
-  coverGreeting: "You're Cordially Invited",
-  hostFamily: 'The Family of Late Saleem Ahmed',
-  welcomeMessage: 'Cordially Welcomes You',
+    coverGreeting: "You're Cordially Invited",
+    hostFamily: 'The Family of Late Saleem Ahmed',
+    welcomeMessage: 'Cordially Invites You',
 
-  weddingMessage:
-    'With the blessings of Allah (SWT), we joyfully invite you to celebrate the beginning of our new journey together.',
-  heroRequest:
-    'We request the pleasure of your company as we celebrate our wedding festivities.',
-  familyMessage:
-    'Together with our families, we invite you to share in our happiness and bless us with your presence.',
-  footerSignoff: ['With love and duas,', 'Abdul Rahman & Maryam'],
-  footerLine: 'We look forward to celebrating these special moments with you.',
-  jazakArabic: 'جزاك الله خيراً',
-  jazakLatin: 'JazakAllahu Khairan',
-},
+    weddingMessage:
+      'With the blessings of Allah (SWT), we joyfully invite you to celebrate the beginning of our new journey together.',
+    heroRequest:
+      'We request the pleasure of your company as we celebrate our wedding festivities.',
+    familyMessage:
+      'Together with our families, we invite you to share in our happiness and bless us with your presence.',
+    footerSignoff: ['With love and duas,', 'Abdul Rahman & Maryam'],
+    footerLine: 'We look forward to celebrating these special moments with you.',
+    jazakArabic: 'جزاك الله خيراً',
+    jazakLatin: 'JazakAllahu Khairan',
+  },
 
   ayah: {
     arabic:
@@ -65,47 +65,47 @@ export const weddingConfig = {
   },
 
   // Two separate events. Never merge them — each has its own date, venue and links.
- events: [
-  {
-    id: 'nikah',
-    name: 'Nikah Ceremony',
-    shortName: 'Nikah',
-    art: 'mosque',
-    theme: 'nikah',
-    date: '2026-12-22',
-    time: 'After Asr Namaz (Jama\'at at 4:00 PM)',
-    venue: 'Masjid Jameela',
-    address: 'Saleem Munshi Nagar, Malegaon',
-    info: 'The Nikah ceremony will take place at the mosque after Asr Namaz (Jama\'at at 4:00 PM).',
-    dressCode: 'Traditional / Modest Attire',
-    // Optional overrides (e.g. a precise Google Maps share link). Leave empty to auto-generate.
-    mapsUrl: '',
-    directionsUrl: '',
-    timeline: [
-      { time: '4:00 PM', label: 'Asr Namaz (Jama\'at)', icon: 'arrival' },
-      { time: 'After Asr', label: 'Nikah ceremony', icon: 'ceremony' },
-      { time: 'Followed by', label: 'Dua and congratulations', icon: 'dua' },
-    ],
-  },
-  {
-    id: 'walima',
-    name: 'Walima Reception',
-    shortName: 'Walima',
-    art: 'lawn',
-    theme: 'walima',
-    date: '2026-12-23',
-    time: '8:00 PM',
-    venue: 'Lotus Lawns',
-    address: '80 ft. road, behind Naurang Colony, Malegaon',
-    info: 'Join us for an evening of celebration, dinner and togetherness.',
-    dressCode: 'Traditional / Formal Attire',
-    mapsUrl: '',
-    directionsUrl: '',
-    timeline: [
-      { time: '8:00 PM', label: 'Guest arrival & dinner', icon: 'dinner' },
-    ],
-  },
-],
+  events: [
+    {
+      id: 'nikah',
+      name: 'Nikah Ceremony',
+      shortName: 'Nikah',
+      art: 'mosque',
+      theme: 'nikah',
+      date: '2026-12-22',
+      time: 'After Asr Namaz (Jama\'at at 4:00 PM)',
+      venue: 'Masjid Jameela',
+      address: 'Saleem Munshi Nagar, Malegaon',
+      info: 'The Nikah ceremony will take place at the mosque after Asr Namaz (Jama\'at at 4:00 PM).',
+      dressCode: 'Traditional / Modest Attire',
+      // Optional overrides (e.g. a precise Google Maps share link). Leave empty to auto-generate.
+      mapsUrl: '',
+      directionsUrl: '',
+      timeline: [
+        { time: '4:00 PM', label: 'Asr Namaz (Jama\'at)', icon: 'arrival' },
+        { time: 'After Asr', label: 'Nikah ceremony', icon: 'ceremony' },
+        { time: 'Followed by', label: 'Dua and congratulations', icon: 'dua' },
+      ],
+    },
+    {
+      id: 'walima',
+      name: 'Walima Reception',
+      shortName: 'Walima',
+      art: 'lawn',
+      theme: 'walima',
+      date: '2026-12-23',
+      time: '8:00 PM',
+      venue: 'Lotus Lawns',
+      address: '80 ft. road, behind Naurang Colony, Malegaon',
+      info: 'Join us for an evening of celebration, dinner and togetherness.',
+      dressCode: 'Traditional / Formal Attire',
+      mapsUrl: '',
+      directionsUrl: '',
+      timeline: [
+        { time: '8:00 PM', label: 'Guest arrival & dinner', icon: 'dinner' },
+      ],
+    },
+  ],
 
   rsvp: {
     maxGuests: 10,
@@ -114,8 +114,8 @@ export const weddingConfig = {
 
   nav: [
     { id: 'home', label: 'Home' },
-    { id: 'countdown', label: 'Countdown' },
     { id: 'events', label: 'Events' },
+    { id: 'countdown', label: 'Countdown' },
     { id: 'timeline', label: 'Schedule' },
 
   ],
