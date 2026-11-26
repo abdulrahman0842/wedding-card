@@ -3,6 +3,6 @@ import react from '@vitejs/plugin-react';
 
 // base './' lets the built site work from any sub-path (GitHub Pages, Netlify, S3, …)
 export default defineConfig({
-  base: './',
+  base: '/',
   plugins: [react()],
 });
